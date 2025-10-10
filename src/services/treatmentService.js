@@ -17,7 +17,7 @@ const treatmentService = {
                 ],
             });
             const petIds = pet.map(p => p.id);
-            if (!pet) throw new Error('Pet não encontrado');
+            if (pet.length === 0) throw new Error('Pet não encontrado');
             return await Treatment.findAll({
                 where: { petId: petIds },
                 attributes: ['id', 'description', 'cost', 'date'],

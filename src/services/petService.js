@@ -46,7 +46,7 @@ const petService = {
 
     deletePet: async (id) => {
         const pet = await Pet.findByPk(id);
-        if (!pet) throw new Error('Cliente não encontrado');
+        if (!pet) throw new Error('Pet não encontrado');
         await pet.destroy();
     },
 };

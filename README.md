@@ -52,3 +52,31 @@ npm run dev
 ```
 http://localhost:3000/api-docs/
 ```
+
+### Executando os Testes
+Os testes unitários estão na pasta __tests__/unit/ e usam Jest e Sinon para testar os serviços (clientService, breedService, petService, treatmentService, userService, authService).
+
+#### Configuração
+Defina o ambiente de teste:
+```
+export NODE_ENV=test
+```
+
+#### Comandos
+
+Rodar todos os testes:
+```
+npm test
+```
+
+Rodar testes específicos (ex.: clientService):
+```
+npm test -- clientService.test.js
+```
+
+Rodar com cobertura:
+```
+npm test -- --coverage
+```
+
+Os testes mockam o Sequelize, bcrypt e jsonwebtoken para isolar a lógica de negócio. Verifique o relatório de cobertura em coverage/lcov-report/index.html.
