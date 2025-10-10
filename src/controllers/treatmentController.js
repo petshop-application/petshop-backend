@@ -3,7 +3,8 @@ const treatmentService = require('../services/treatmentService');
 const treatmentController = {
     getAllTreatments: async (req, res) => {
         try {
-            const treatment = await treatmentService.getAllTreatments();
+            const { perfil, cpf } = req.user;
+            const treatment = await treatmentService.getAllTreatments(perfil, cpf);
             res.json(treatment);
         } catch (error) {
             res.status(500).json({ message: error.message });

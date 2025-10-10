@@ -22,14 +22,12 @@ const options = {
                         name: { type: 'string', description: 'Nome do usuário' },
                         cpf: { type: 'string', description: 'CPF do usuário' },
                         perfil: { type: 'string', format: 'string', description: 'admin ou client' },
-                        password: { type: 'string', format: 'string', description: 'Sennha do usuário' },
                     },
                     example: {
                         id: 1,
                         name: "Jane Smith",
                         perfil: "client",
                         cpf: "111111111111",
-                        password: "password123"
                     },
                 },
                 Client: {

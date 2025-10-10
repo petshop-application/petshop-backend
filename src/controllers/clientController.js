@@ -3,7 +3,8 @@ const clientService = require('../services/clientService');
 const clientController = {
     getAllClients: async (req, res) => {
         try {
-            const clients = await clientService.getAllClients();
+            const { perfil, cpf } = req.user;
+            const clients = await clientService.getAllClients(perfil, cpf);
             res.json(clients);
         } catch (error) {
             res.status(500).json({ message: error.message });

@@ -4,37 +4,6 @@ const userController = require('../controllers/userController');
 
 /**
  * @swagger
- * components:
- *   schemas:
- *     User:
- *       type: object
- *       required:
- *         - cpf
- *         - name
- *         - perfil
- *         - password
- *       properties:
- *         cpf:
- *           type: string
- *           description: CPF do usuário
- *         name:
- *           type: string
- *           description: Nome do usuário
- *         perfil:
- *           type: string
- *           description: Perfil do usuário
- *         password:
- *           type: string
- *           description: Senha do usuário
- *       example:
- *         cpf: 1
- *         name: João
- *         perfil: admin
- *         password: senha123
- */
-
-/**
- * @swagger
  * /api/users:
  *   get:
  *     summary: Lista todos os usuários

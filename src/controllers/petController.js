@@ -3,7 +3,8 @@ const petService = require('../services/petService');
 const clientController = {
     getAllPets: async (req, res) => {
         try {
-            const pets = await petService.getAllPets();
+            const { perfil, cpf } = req.user;
+            const pets = await petService.getAllPets(perfil, cpf);
             res.json(pets);
         } catch (error) {
             res.status(500).json({ message: error.message });

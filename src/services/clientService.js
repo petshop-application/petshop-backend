@@ -2,7 +2,12 @@ const db = require('../models');
 const Client = db.Client;
 
 const clientService = {
-    getAllClients: async () => {
+    getAllClients: async (perfil, cpf) => {
+        if (perfil === 'client') {
+            const client = await Client.findOne({ where: { cpf } });
+            if (!client) throw new Error('Cliente não encontrado');
+            return [client];
+        }
         return await Client.findAll();
     },
 

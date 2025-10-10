@@ -5,9 +5,26 @@ const Breed = db.Breed;
 const Sequelize = require('sequelize');
 
 const petService = {
-    getAllPets: async () => {
+    getAllPets: async (perfil, cpf) => {
+        if (perfil === 'client') {
+            const client = await Client.findOne({ where: { cpf } });
+            if (!client) throw new Error('Cliente não encontrado');
+            return await Pet.findAll({
+                where: { clientId: client.id },
+                attributes: ['id', 'name', 'birthday'],
+                include: [
+                    {
+                        model: Client,
+                        as: 'Client',
+                    },
+                    {
+                        model: Breed,
+                        as: 'Breed',
+                    },
+                ],
+            });
+        }
         return await Pet.findAll({
-            // attributes: ['id', 'name', 'birthday', [Sequelize.col('Client.name'), 'client'], [Sequelize.col('Breed.description'), 'breed']],
             attributes: ['id', 'name', 'birthday'],
             include: [
                 {
