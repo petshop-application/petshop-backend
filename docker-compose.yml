@@ -1,0 +1,54 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: petshop-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: petshop
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - petshop-net
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: petshop-backend
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      DB_HOST: db
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: petshop
+      DB_PORT: 5432
+      JWT_SECRET: x9k!Pz$2mQw!8vL3nT7rY6jF
+      NODE_ENV: development
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - db
+    networks:
+      - petshop-net
+
+volumes:
+  postgres_data:
+
+
+networks:
+  petshop-net:
+    name: petshop-net
+    driver: bridge
