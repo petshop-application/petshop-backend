@@ -4,9 +4,17 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
 
-    await queryInterface.bulkInsert('breeds', [{
-      description: 'Golden Retriever',
-    }], {});
+    await queryInterface.bulkInsert('breeds', [
+      {
+        description: 'Golden Retriever',
+      },
+      {
+        description: 'Labrador',
+      },
+      {
+        description: 'Bulldog',
+      },
+    ], {});
 
   },
 

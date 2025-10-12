@@ -8,13 +8,13 @@ module.exports = {
         name: 'John Doe',
         perfil: 'admin',
         cpf: '12345678900',
-        password: '$2b$10$Z/8EvNlwLI3OTBL3MUker.9avSF43jIn5MTBGWU8IH2DwNvDB2ZDu'
+        password: '$2b$10$zJbKGOhyVEVWiYMkvsw6YeTZq3T75NKJcHsRB27XXZ3p98qFeAX.6'
       },
       {
         name: 'Jane Smith',
         perfil: 'client',
-        cpf: '11111111111',
-        password: '$2b$10$al6NhXw74BBSiJcUN21ah.ne/ltc6TCrPJt2M00f9YgEnY..DfDfW'
+        cpf: '98765432100',
+        password: '$2b$10$qHyANPXAg8Mgls/EFQedp.XnXpouNFbbxYmoVqU4HEE6LqjgsBqIe'
       }
     ], {});
 

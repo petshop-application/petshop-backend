@@ -4,11 +4,18 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
 
-    await queryInterface.bulkInsert('clients', [{
-      name: 'Jane Smith',
-      cpf: '11111111111',
-      created_at: new Date(),
-    }], {});
+    await queryInterface.bulkInsert('clients', [
+      {
+        name: 'Jane Smith',
+        cpf: '98765432100',
+        created_at: new Date(),
+      },
+      {
+        name: 'Kate Williams',
+        cpf: '11111111100',
+        created_at: new Date(),
+      }
+    ], {});
 
   },
 

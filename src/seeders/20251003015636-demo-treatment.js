@@ -3,12 +3,20 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('treatments', [{
-      pet_id: 1,
-      description: 'Regular Checkup',
-      date: new Date(),
-      cost: 100.00
-    }], {});
+    await queryInterface.bulkInsert('treatments', [
+      {
+        pet_id: 1,
+        description: 'Regular Checkup',
+        date: new Date(),
+        cost: 100.00
+      },
+      {
+        pet_id: 2,
+        description: 'Vacina',
+        date: new Date(),
+        cost: 50.00
+      }
+    ], {});
 
   },
 
