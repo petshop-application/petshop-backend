@@ -1,82 +1,105 @@
+
+
 # Petshop Backend
 
 ## Descrição
-Backend do Petshop em Node.js
+Este é o backend de uma aplicação para gerenciamento de petshops, desenvolvido em **Node.js** com **Express** e utilizando **PostgreSQL** como banco de dados. O projeto inclui funcionalidades para gerenciamento de clientes, raças, pets, tratamentos, usuários e autenticação, além de documentação de APIs e testes unitários.
 
-## Requisitos
-*Node.js
-*PostgresSQL
+O backend é configurado para rodar localmente ou em contêineres com **Docker**, oferecendo uma API RESTful documentada com **Swagger**.
 
-### Criação do banco de dados
+## Pré-requisitos
+Antes de começar, certifique-se de ter instalado:
+- **Node.js** (versão 20 ou superior)
+- **PostgreSQL** (versão 12 ou superior)
+- **Docker** e **Docker Compose** (opcional, para execução em contêineres)
 
-Para criação do bando de dados
-```
-npx sequelize db:create
-```
-Para rodar as migrations que realizam a criação das tabelas do banco de dados
+## Configuração do Banco de Dados
+O projeto utiliza o **Sequelize** como ORM para gerenciar o banco de dados PostgreSQL. Siga os passos abaixo para configurar o banco:
 
-```
-npx sequelize db:migrate
-```
+1. **Criar o banco de dados**:
+   ```bash
+   npx sequelize db:create
+   ```
 
-Para desfazer as migrations
-```
-npx sequelize db:migrate:undo:all
-```
+2. **Executar as migrations** (cria as tabelas no banco):
+   ```bash
+   npx sequelize db:migrate
+   ```
 
-Para rodar as seeders que populam as tabelas do banco de dados
+3. **Desfazer migrations** (se necessário):
+   ```bash
+   npx sequelize db:migrate:undo:all
+   ```
 
-```
-npx sequelize-cli db:seed:all
-```
+4. **Popular o banco com dados iniciais** (seeders):
+   ```bash
+   npx sequelize-cli db:seed:all
+   ```
 
-Para desfazer as seeders
-```
-npx sequelize-cli db:seed:undo:all
-```
+5. **Desfazer seeders** (se necessário):
+   ```bash
+   npx sequelize-cli db:seed:undo:all
+   ```
 
-### Instalar as dependências
-
-```
+## Instalação
+Para instalar as dependências do projeto, execute:
+```bash
 npm install
 ```
 
-### Rodar a aplicação
-
-```
+## Executando a Aplicação
+### Modo Desenvolvimento
+Para rodar o projeto localmente em modo de desenvolvimento:
+```bash
 npm run dev
 ```
 
-### Documentação das APIS
+A aplicação estará disponível em: `http://localhost:3000`.
 
+### Modo Produção com Docker
+Para executar o projeto com **Docker**, utilize o comando abaixo, que sobe a aplicação e o banco de dados em contêineres:
+```bash
+sudo docker compose up --build -d
+```
+
+A aplicação estará acessível em: `http://localhost:3000`.
+
+## Documentação da API
+A documentação da API está disponível via **Swagger** e pode ser acessada em:
 ```
 http://localhost:3000/api-docs/
 ```
 
-### Executando os Testes
-Os testes unitários estão na pasta __tests__/unit/ e usam Jest e Sinon para testar os serviços (clientService, breedService, petService, treatmentService, userService, authService).
+## Testes
+Os testes unitários estão localizados na pasta `__tests__/unit/` e utilizam **Jest** e **Sinon** para testar os serviços. Os testes mockam dependências como **Sequelize**, **bcrypt** e **jsonwebtoken** para isolar a lógica de negócio.
 
-#### Configuração
-Defina o ambiente de teste:
-```
+### Configuração do Ambiente de Testes
+Defina o ambiente de teste antes de executar os testes:
+```bash
 export NODE_ENV=test
 ```
 
-#### Comandos
+### Comandos de Teste
+- **Rodar todos os testes**:
+  ```bash
+  npm test
+  ```
 
-Rodar todos os testes:
-```
-npm test
-```
+- **Rodar testes específicos** (exemplo para `clientService`):
+  ```bash
+  npm test -- clientService.test.js
+  ```
 
-Rodar testes específicos (ex.: clientService):
-```
-npm test -- clientService.test.js
-```
+- **Rodar testes com cobertura**:
+  ```bash
+  npm test -- --coverage
+  ```
 
-Rodar com cobertura:
-```
-npm test -- --coverage
-```
+O relatório de cobertura de testes pode ser encontrado em: `coverage/lcov-report/index.html`.
 
-Os testes mockam o Sequelize, bcrypt e jsonwebtoken para isolar a lógica de negócio. Verifique o relatório de cobertura em coverage/lcov-report/index.html.
+## Estrutura do Projeto
+- **`src/`**: Contém o código-fonte da aplicação (controladores, serviços, modelos, etc.).
+- **`__tests__/unit/`**: Contém os testes unitários.
+- **`migrations/`**: Arquivos de migração do banco de dados.
+- **`seeders/`**: Arquivos para popular o banco com dados iniciais.
+- **`docker-compose.yml`**: Configuração para rodar a aplicação com Docker.
