@@ -10,10 +10,36 @@ O backend é configurado para rodar localmente ou em contêineres com **Docker**
 ## Pré-requisitos
 Antes de começar, certifique-se de ter instalado:
 - **Node.js** (versão 20 ou superior)
-- **PostgreSQL** (versão 12 ou superior)
+- **PostgreSQL** (versão 12 ou superior, opcional para execução local)
 - **Docker** e **Docker Compose** (opcional, para execução em contêineres)
 
-## Configuração do Banco de Dados
+## Instalação
+Para instalar as dependências do projeto, execute:
+```bash
+npm install
+```
+
+## Executando a Aplicação
+
+### Modo Desenvolvimento
+Para Executar o projeto localmente em modo de desenvolvimento, certifique-se de ter o banco de dados PostgreSQL instalado e configurado.
+
+Além disso, é necessário criar, na raiz do projeto, um arquivo .env com as seguintes configurações:
+
+```bash
+PORT=3000
+JWT_SECRET=x9k!Pz$2mQw!8vL3nT7rY6jF
+NODE_ENV=development
+
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=seu_usuario_postgresql
+DB_PASSWORD=sua_senha_postgresql
+DB_NAME=petshop
+
+```
+
+#### Configuração do Banco de Dados
 O projeto utiliza o **Sequelize** como ORM para gerenciar o banco de dados PostgreSQL. Siga os passos abaixo para configurar o banco:
 
 1. **Criar o banco de dados**:
@@ -41,14 +67,6 @@ O projeto utiliza o **Sequelize** como ORM para gerenciar o banco de dados Postg
    npx sequelize-cli db:seed:undo:all
    ```
 
-## Instalação
-Para instalar as dependências do projeto, execute:
-```bash
-npm install
-```
-
-## Executando a Aplicação
-### Modo Desenvolvimento
 Para rodar o projeto localmente em modo de desenvolvimento:
 ```bash
 npm run dev
@@ -57,7 +75,9 @@ npm run dev
 A aplicação estará disponível em: `http://localhost:3000`.
 
 ### Modo Produção com Docker
-Para executar o projeto com **Docker**, utilize o comando abaixo, que sobe a aplicação e o banco de dados em contêineres:
+Para executar o projeto com **Docker**, certifique-se de ter instalado o Docker e Docker compose.
+
+Utilize o comando abaixo, que sobe a aplicação e o banco de dados em contêineres:
 ```bash
 sudo docker compose up --build -d
 ```
